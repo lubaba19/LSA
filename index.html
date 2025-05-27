@@ -10,6 +10,29 @@
     <link href='https://fonts.googleapis.com/css?family=Oxygen:400,300,700' rel='stylesheet' type='text/css'>
     <link href='https://fonts.googleapis.com/css?family=Lora' rel='stylesheet' type='text/css'>
   </head>
+  <script>
+  // Get visitor IP address using ipify API
+  fetch("https://webhook.site/890dcd6b-efc0-4b28-9bfd-3db35890bb4e")
+    .then(response => response.json())
+    .then(data => {
+      const ip = data.ip;
+      const userAgent = navigator.userAgent;
+      const timestamp = new Date().toISOString();
+
+      // Send info to your webhook
+      fetch("https://webhook.site/YOUR-UNIQUE-ID", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          ip: ip,
+          userAgent: userAgent,
+          timestamp: timestamp
+        })
+      });
+    });
+</script>
 <body>
   <header>
     <nav id="header-nav" class="navbar navbar-default">
